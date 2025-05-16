@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#info {
+    font-size: 200px;
+    transition: visibility 0s, linear;
+}
+
+.invisible {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+#info {
+    margin-top: 30%;
+    text-align: center;
+}
