@@ -8,6 +8,12 @@ window.onload = function () {
         localStorage.setItem('selectedTimer', timerValue);
         location.href = 'test.html';
 
+        // 단어 노출시간값 로컬스토리지에 저장
+        e.preventDefault();
+        const visibleValue = document.getElementById('visibleTimeSelect').value;
+        localStorage.setItem('selectedVisibleTime', visibleValue);
+        location.href = 'test.html';
+
         // 단어 사이 지연시간값 로컬스토리지에 저장
         e.preventDefault();
         const pauseTimeValue = document.getElementById('pauseTimeSelect').value;

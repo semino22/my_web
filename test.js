@@ -2,6 +2,10 @@
 const bgColor = localStorage.getItem('bgColor');
 const fontColor = localStorage.getItem('fontColor');
 
+// menu.html에서 단어 노출시간값 가져오기
+const selectedVisibleMinRaw = localStorage.getItem('selectedVisibleTime');
+const selectedVisibleMin = selectedVisibleMinRaw === null ? 0 : Number(selectedVisibleMinRaw);
+
 // menu.html에서 단어사이 지연시간값 가져오기
 const selectedPauseMinRaw = localStorage.getItem('selectedPauseTime');
 const selectedPauseMin = selectedPauseMinRaw === null ? 0 : Number(selectedPauseMinRaw);
@@ -65,8 +69,15 @@ async function toggleVisibility() {
     if (showCount >= currentArray.length) {
         info.classList.remove('visible');
         info.classList.add('invisible');
-        
+
         await sleep(selectedPauseMin * 1000);
+
+        if (bgColor == "white") {
+                document.getElementById('info').style.color = "black";
+            } else {
+                document.body.style.backgroundColor = "white";
+                document.getElementById('info').style.color = "black";
+            }
 
         // menu.html에서 저장한 타이머 값 가져오기
         const selectedMinRaw = localStorage.getItem('selectedTimer');
@@ -87,7 +98,7 @@ async function toggleVisibility() {
         wordIndex++;
         showCount++;
         visible = true;
-        setTimeout(toggleVisibility, 1000);
+        setTimeout(toggleVisibility, selectedVisibleMin * 1000);
     } else {
         // 숨김 상태
         info.classList.remove('visible');
@@ -114,12 +125,7 @@ function startTimer(duration, display) {
         } else {
             display.textContent = "00:00";
             // 타이머 종료 후 "작성 종료" 메시지 중앙에 표시
-            if (bgColor == "white") {
-                document.getElementById('info').style.color = "black";
-            } else {
-                document.body.style.backgroundColor = "white";
-                document.getElementById('info').style.color = "black";
-            }
+            
 
             info.textContent = "작성 종료";
             info.classList.remove('invisible');
