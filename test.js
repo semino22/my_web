@@ -1,9 +1,6 @@
 const bgColor = localStorage.getItem('bgColor');
 const fontColor = localStorage.getItem('fontColor');
 
-document.body.style.backgroundColor = bgColor;
-document.getElementById('info').style.color = fontColor;
-
 // 단어 배열
 const chunkArray = ["1-1", "1-2", "1-3"];
 const chunkArray2 = ["2-1", "2-2", "2-3"];
@@ -52,12 +49,23 @@ function startCountdown(count) {
 }
 
 function toggleVisibility() {
+    // 배경색과 폰트 색상 변경
+    document.body.style.backgroundColor = bgColor;
+    document.getElementById('info').style.color = fontColor;
+
     if (showCount >= currentArray.length) {
         info.classList.remove('visible');
         info.classList.add('invisible');
 
-        backBtn.style.display = 'inline-block';
+        // menu.html에서 저장한 타이머 값 가져오기
+        const selectedMinRaw = localStorage.getItem('selectedTimer');
+        const selectedMin = selectedMinRaw === null ? 0 : Number(selectedMinRaw);
 
+        if (selectedMin >= 0) {
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.style.display = 'block';
+            startTimer(selectedMin * 60, timerDisplay);
+        }
         return;
     }
     if (!visible) {
@@ -73,19 +81,40 @@ function toggleVisibility() {
         info.classList.add('invisible');
     }
     visible = !visible;
-    setTimeout(toggleVisibility, 3000);
+    setTimeout(toggleVisibility, 1000);
 }
 
-// 5분(300초) 타이머 함수
+// 시험 전 지연시간 타이머 함수
 function startTimer(duration, display) {
     let timer = duration;
     function updateTimer() {
+        // 타이머 시작 시 info를 숨김
+        info.classList.remove('visible');
+        info.classList.add('invisible');
+
         const minutes = String(Math.floor(timer / 60)).padStart(2, '0');
         const seconds = String(timer % 60).padStart(2, '0');
         display.textContent = `${minutes}:${seconds}`;
         if (timer > 0) {
             timer--;
             setTimeout(updateTimer, 1000);
+        } else {
+            display.textContent = "00:00";
+            // 타이머 종료 후 "작성 종료" 메시지 중앙에 표시
+            if (bgColor == "white") {
+                document.getElementById('info').style.color = "black";
+            } else {
+                document.body.style.backgroundColor = "white";
+                document.getElementById('info').style.color = "black";
+            }
+
+            info.textContent = "작성 종료";
+            info.classList.remove('invisible');
+            info.classList.add('visible');
+            info.style.fontSize = "50px";
+            info.style.textAlign = "center";
+
+            backBtn.style.display = 'inline-block';
         }
     }
     updateTimer();
