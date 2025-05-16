@@ -56,10 +56,8 @@ function toggleVisibility() {
         info.classList.remove('visible');
         info.classList.add('invisible');
 
-        // 단어 퀴즈가 끝난 후 타이머 시작
-        const timerDisplay = document.getElementById('timer');
-        startTimer(300, timerDisplay); // 5분 = 300초
         backBtn.style.display = 'inline-block';
+
         return;
     }
     if (!visible) {
