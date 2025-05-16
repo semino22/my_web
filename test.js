@@ -32,6 +32,22 @@ const backBtn = document.getElementById('backBtn');
 let showCount = 0;
 let visible = false;
 
+// 카운트다운 함수 추가
+function startCountdown(count) {
+    info.textContent = count;
+    info.classList.remove('invisible');
+    info.classList.add('visible');
+    if (count > 1) {
+        setTimeout(() => startCountdown(count - 1), 1000);
+    } else {
+        setTimeout(() => {
+            info.classList.remove('visible');
+            info.classList.add('invisible');
+            setTimeout(toggleVisibility, 500); // 0.5초 후 퀴즈 시작
+        }, 1000);
+    }
+}
+
 function toggleVisibility() {
     if (showCount >= currentArray.length) {
         info.classList.remove('visible');
@@ -55,7 +71,7 @@ function toggleVisibility() {
     setTimeout(toggleVisibility, 3000);
 }
 
-// 첫 시작은 숨김 상태에서 시작
+// 첫 시작은 카운트다운부터
 info.classList.remove('visible');
 info.classList.add('invisible');
-setTimeout(toggleVisibility, 0);
+startCountdown(5);
