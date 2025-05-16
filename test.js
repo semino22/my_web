@@ -1,5 +1,14 @@
+// menu.html에서 배경색, 폰트색상 가져오기
 const bgColor = localStorage.getItem('bgColor');
 const fontColor = localStorage.getItem('fontColor');
+
+// menu.html에서 단어사이 지연시간값 가져오기
+const selectedPauseMinRaw = localStorage.getItem('selectedPauseTime');
+const selectedPauseMin = selectedPauseMinRaw === null ? 0 : Number(selectedPauseMinRaw);
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // 단어 배열
 const chunkArray = ["1-1", "1-2", "1-3"];
@@ -48,7 +57,7 @@ function startCountdown(count) {
     }
 }
 
-function toggleVisibility() {
+async function toggleVisibility() {
     // 배경색과 폰트 색상 변경
     document.body.style.backgroundColor = bgColor;
     document.getElementById('info').style.color = fontColor;
@@ -56,6 +65,8 @@ function toggleVisibility() {
     if (showCount >= currentArray.length) {
         info.classList.remove('visible');
         info.classList.add('invisible');
+        
+        await sleep(selectedPauseMin * 1000);
 
         // menu.html에서 저장한 타이머 값 가져오기
         const selectedMinRaw = localStorage.getItem('selectedTimer');
@@ -75,13 +86,15 @@ function toggleVisibility() {
         info.classList.add('visible');
         wordIndex++;
         showCount++;
+        visible = true;
+        setTimeout(toggleVisibility, 1000);
     } else {
         // 숨김 상태
         info.classList.remove('visible');
         info.classList.add('invisible');
+        visible = false;
+        setTimeout(toggleVisibility, selectedPauseMin * 1000);
     }
-    visible = !visible;
-    setTimeout(toggleVisibility, 1000);
 }
 
 // 시험 전 지연시간 타이머 함수
