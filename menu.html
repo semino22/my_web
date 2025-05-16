@@ -12,7 +12,7 @@
     <h1>옵션을 선택하세요.</h1>
 
     <div id="bgDiv">
-        <p>배경색상</p>
+        <p>배경 색상</p>
         <form>
             <label>
                 <input type="radio" name="bgcolor" value="white" checked>
@@ -25,7 +25,7 @@
         </form>
     </div>
     <br>
-    <div>
+    <div id="fontColorDiv">
         <p>글자 색상</p>
         <form>
             <label>
@@ -43,8 +43,8 @@
         </form>
     </div>
     <br>
-    <div>
-        <label for="timerSelect">시험 전 지연시간(분):</label>
+    <div id="timerDiv">
+        <label for="timerSelect">시험 전 지연시간(분) </label>
         <select id="timerSelect" style="font-size:20px;">
             <option value="0">없음</option>
             <option value="5">5분</option>
@@ -53,8 +53,8 @@
         </select>
     </div>
     <br>
-    <div>
-        <label for="visibleTime">단어 노출시간(초):</label>
+    <div id="visibleTimeDiv">
+        <label for="visibleTime">단어 노출시간(초) </label>
         <select id="visibleTimeSelect" style="font-size:20px;">
             <option value="1">1초</option>
             <option value="2">2초</option>
@@ -63,8 +63,8 @@
         </select>
     </div>
     <br>
-    <div>
-        <label for="pauseTime">단어 사이 지연시간(초):</label>
+    <div id="pauseTimeDiv">
+        <label for="pauseTime">단어 사이 지연시간(초)</label>
         <select id="pauseTimeSelect" style="font-size:20px;">
             <option value="1">1초</option>
             <option value="2">2초</option>
@@ -72,6 +72,7 @@
             <option value="4">4초</option>
         </select>
     </div>
+    <br>
     <button id="nextBtn">다음으로</button>
 
     <script src="./menu.js"></script>

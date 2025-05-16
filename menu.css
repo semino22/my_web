@@ -12,10 +12,24 @@ div {
     padding: 20px;
 }
 #bgDiv {
-    background-color: aliceblue;
-    padding: 20px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding-left: 140px;
+    padding-right: 140px;
+}
+#fontColorDiv {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+#timerDiv {
+    padding-left: 75px;
+    padding-right: 75px;
+}
+#visibleTimeDiv {
+    padding-left: 95px;
+    padding-right: 95px;
+}
+#pauseTimeDiv {
+    padding-left: 70px;
+    padding-right: 70px;
 }
 div p {
     margin: 0;
