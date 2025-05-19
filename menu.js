@@ -20,6 +20,7 @@ window.onload = function () {
         localStorage.setItem('selectedPauseTime', pauseTimeValue);
         location.href = 'test.html';
 
+        // 배경색, 폰트색 지정
         const bgColor = document.querySelector('input[name="bgcolor"]:checked').value;
         const fontColor = document.querySelector('input[name="fontcolor"]:checked').value;
 
