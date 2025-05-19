@@ -10,7 +10,6 @@ body {
 
 p {
     margin-bottom: 24px;
-    /* 한 줄 띄우기 */
     position: static;
     height: auto;
     font-size: 60px;

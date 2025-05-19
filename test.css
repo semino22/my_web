@@ -9,22 +9,18 @@ body {
     font-size: 200px;
     transition: visibility 0s, linear;
 }
-
 .invisible {
     visibility: hidden;
     opacity: 0;
 }
-
 .visible {
     visibility: visible;
     opacity: 1;
 }
-
 #info {
     margin-top: 10%;
     text-align: center;
 }
-
 button {
     font-size: 20px;
     padding-left: 15px;
